@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+
+<body>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <div>
+        <form action="#">
+            <div>
+                <label for='name'>
+                    Username
+                </label>
+                <input required type="text" id='name'>
+            </div>
+            <div>
+                <label for='password'>
+                    Password
+                </label>
+                <input required type="password" id='password'>
+            </div>
+            <div>
+                <button onclick='create_user()'>Crear usuario</button>
+            </div>
+
+        </form>
+    </div>
+
+    <div id="user_create">
+
+    </div>
+
+    <script>
+        function create_user() {
+            var user = $('#name').val();
+            var pass = $('#password').val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'https://apitrello.herokuapp.com/users',
+                data: {
+                    'username': user,
+                    'password': pass
+                },
+
+                success: function(result) {
+                    console.log(result);
+                },
+                error: function(xhr, status, thrown) {
+                    console.log('el status es = ' + status);
+                    console.log('el thrown es = ' + thrown);
+                    console.log(xhr);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
