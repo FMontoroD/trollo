@@ -5,10 +5,63 @@
 }
 
 body {
-    background: blue;
+    background: #173f5f;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    height: auto;
+    width: auto;
 }
 
-#global {
+#global {}
+
+.login_box {
+    border-radius: 15px;
+    display: flex;
+    margin-top: 20px;
+    width: 30%;
+    height: 100%;
+    background: #f6d55c;
+    padding: 10px;
+}
+
+.login_box label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.login_box button {
+    margin-top: 10px;
+}
+
+.login_box input {
+    height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #dfe;
+    border-radius: 5px;
+    border: 1px solid #39c;
+}
+
+h2 {
+    display: inline-block;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.leter {}
+
+.img_logo {
+    display: inline-flex;
+    width: 9%;
+    margin-top: 30px;
+    margin-left: 35px;
+}
+
+#dash {
+    background-color: white;
     width: 90%;
-    background: lightblue;
+    height: 100%;
 }

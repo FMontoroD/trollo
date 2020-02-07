@@ -2,32 +2,37 @@
 <html lang="en">
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Registro</title>
 </head>
 
 <body>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <h2>Registro.</h2>
 
-    <div>
+    <div class="login_box">
         <form action="#">
             <div>
                 <label for='name'>
                     Username
                 </label>
-                <input required type="text" id='name'>
+                <input required type="text" id='name' placeholder="Elige un nombre...">
             </div>
             <div>
                 <label for='password'>
                     Password
                 </label>
-                <input required type="password" id='password'>
+                <input required type="password" id='password' placeholder="Elige una contraseña">
             </div>
             <div>
+                <a href="index.html"><button >LogIn</button></a>
+
                 <button onclick='create_user()'>Crear usuario</button>
             </div>
 
@@ -42,6 +47,7 @@
         function create_user() {
             var user = $('#name').val();
             var pass = $('#password').val();
+            console.log(pass);
 
             $.ajax({
                 type: 'POST',
@@ -53,6 +59,8 @@
 
                 success: function(result) {
                     console.log(result);
+
+
                 },
                 error: function(xhr, status, thrown) {
                     console.log('el status es = ' + status);

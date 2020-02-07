@@ -3,6 +3,7 @@
 
 <head>
     <link type="text/css" rel="stylesheet" href="css/styles.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,30 +12,73 @@
 
 <body>
 
-    <div id='global'>
-        <div class='welcome_title'>
-            <h1>Bienvenido a Trollo</h1>
-        </div>
-        <div class='container login_box'>
-            <form action="#">
-                <label for='name'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div id="global">
+        <div class="logo">
+            <div class="img_logo">
+                <img src="img/favicon.png" alt="">
+                <br>
+            </div>
+            <div class="leter">
+                <h1>Trollo</h1>
+            </div>
+
+            <div class="login_box">
+                <form action="#">
+                    <div>
+                        <label for='name'>
                     Username
                 </label>
-                <div>
-                    <input required type="text" id='name'>
-                </div>
-                <label for='password'>
+                        <input required type="text" id='name'>
+                    </div>
+                    <div>
+                        <label for='password'>
                     Password
-                        <div>
-                    </label>
-        </div>
-        <input required type="password" id='password'>
-        <button onclick='create_user()'>Crear usuario</button>
-        <div>
-        </div>
-    </div>
+                </label>
+                        <input required type="password" id='password'>
+                    </div>
+                    <div>
+                        <button onclick='login()'>Entrar</button>
+                        <a href="register.html"><button >Registrarme</button></a>
 
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
     </div>
+    <script>
+        function login() {
+            var user = $('#name').val();
+            var pass = $('#password').val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'https://apitrello.herokuapp.com/users/login',
+                data: {
+                    'username': user,
+                    'password': pass
+                },
+
+                success: function(result) {
+                    console.log(result);
+                    localStorage.clear();
+                    if (result !== undefined && !localStorage.hasOwnProperty('token')) {
+                        localStorage.setItem("token", result);
+                        window.location.replace("http://127.0.0.1:8080/dash.html");
+                    }
+                },
+                error: function(xhr, status, thrown) {
+                    alert('usuario o contraseña incorrectos');
+
+                    console.log('el status es = ' + status);
+                    console.log('el thrown es = ' + thrown);
+                    console.log(xhr);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
