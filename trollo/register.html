@@ -12,37 +12,42 @@
 </head>
 
 <body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+    <div class="container">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <h2>Registro.</h2>
+        <div class="leter">
+            <h1>Registro.</h1>
+        </div>
 
-    <div class="login_box">
-        <form action="#">
-            <div>
-                <label for='name'>
+        <div class="login_box">
+            <form action="#">
+                <div>
+                    <label for='name'>
                     Username
                 </label>
-                <input required type="text" id='name' placeholder="Elige un nombre...">
-            </div>
-            <div>
-                <label for='password'>
+                    <input required type="text" id='name' placeholder="Elige un nombre...">
+                </div>
+                <div>
+                    <label for='password'>
                     Password
                 </label>
-                <input required type="password" id='password' placeholder="Elige una contraseña">
-            </div>
-            <div>
-                <a href="index.html"><button >LogIn</button></a>
+                    <input required type="password" id='password' placeholder="Elige una contraseña">
+                </div>
+                <div>
+                    <a href="index.html"><button class="btn btn-primary">LogIn</button></a>
 
-                <button onclick='create_user()'>Crear usuario</button>
-            </div>
+                    <button class="btn btn-success" onclick='create_user()'>Crear usuario</button>
+                </div>
 
-        </form>
+            </form>
+        </div>
+
+        <div id="user_create">
+
+        </div>
     </div>
-
-    <div id="user_create">
-
-    </div>
-
     <script>
         function create_user() {
             var user = $('#name').val();

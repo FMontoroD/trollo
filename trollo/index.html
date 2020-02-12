@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="css/styles.css">
 
     <meta charset="UTF-8">
@@ -11,72 +14,81 @@
 </head>
 
 <body>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <div id="global">
-        <div class="logo">
-            <div class="img_logo">
-                <img src="img/favicon.png" alt="">
-                <br>
-            </div>
-            <div class="leter">
-                <h1>Trollo</h1>
-            </div>
-
-            <div class="login_box">
-                <form action="#">
-                    <div>
-                        <label for='name'>
+    <div class="container">
+        <div id="global">
+            <div class="logo">
+                <div class="img_logo">
+                    <img src="img/favicon.png" alt="">
+                    <br>
+                </div>
+                <div class="form-group">
+                    <div class="card login_box">
+                        <form action="#">
+                            <div>
+                                <label for='name'>
                     Username
                 </label>
-                        <input required type="text" id='name'>
-                    </div>
-                    <div>
-                        <label for='password'>
+                                <input required type="text" id='name'>
+                            </div>
+                            <div>
+                                <label for='password'>
                     Password
                 </label>
-                        <input required type="password" id='password'>
-                    </div>
-                    <div>
-                        <button onclick='login()'>Entrar</button>
-                        <a href="register.html"><button >Registrarme</button></a>
+                                <input required type="password" id='password'>
+                            </div>
+                            <div>
+                                <a href="register.html"><button class="btn btn-success" >Registrarme</button></a>
+                                <button class="btn btn-primary" onclick='login()'>Entrar</button>
 
-                    </div>
+                            </div>
 
-                </form>
+                        </form>
+                    </div>
+                </div>
+
             </div>
-
         </div>
     </div>
     <script>
+        $(document).ready(function() {
+            localStorage.removeItem('token');;
+        });
+
         function login() {
             var user = $('#name').val();
             var pass = $('#password').val();
 
-            $.ajax({
-                type: 'POST',
-                url: 'https://apitrello.herokuapp.com/users/login',
-                data: {
-                    'username': user,
-                    'password': pass
-                },
+            if (user.length !== 0 && pass.lenght !== 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://apitrello.herokuapp.com/users/login',
+                    data: {
+                        'username': user,
+                        'password': pass
+                    },
 
-                success: function(result) {
-                    console.log(result);
-                    localStorage.clear();
-                    if (result !== undefined && !localStorage.hasOwnProperty('token')) {
-                        localStorage.setItem("token", result);
-                        window.location.replace("http://127.0.0.1:8080/dash.html");
+                    success: function(result) {
+                        console.log(result);
+
+                        localStorage.clear();
+                        if (result !== undefined && !localStorage.hasOwnProperty('token')) {
+                            localStorage.setItem("token", result);
+                            window.location.replace("http://127.0.0.1:8080/dash.html");
+                        }
+                    },
+                    error: function(xhr, status, thrown) {
+                        alert('usuario o contraseña incorrectos');
+
+                        console.log('el status es = ' + status);
+                        console.log('el thrown es = ' + thrown);
+                        console.log(xhr);
                     }
-                },
-                error: function(xhr, status, thrown) {
-                    alert('usuario o contraseña incorrectos');
+                });
+            } else {
+                alert('Nombre o Contraseña invalidos');
+            }
 
-                    console.log('el status es = ' + status);
-                    console.log('el thrown es = ' + thrown);
-                    console.log(xhr);
-                }
-            });
+
         }
     </script>
 </body>

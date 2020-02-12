@@ -13,122 +13,54 @@
 </head>
 
 <body>
-
     <div id='dash' class='container'>
-        <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-            <a class='navbar-brand' href='#'>Trollo</a>
+        <nav class='navbar col-12 navbar-expand-lg nav-pills nav-fill navbar-light bg-light' style="border-radius: 10px; margin-top: 5px;">
+            <img src="img/favicon.png" alt="" style="width: 10% !important;">
             <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
             <span class='navbar-toggler-icon'></span>
             </button>
             <div class='collapse navbar-collapse' id='navbarNav'>
                 <ul class='navbar-nav'>
                     <li class='nav-item active'>
-                        <a class='nav-link' href='#'>Inicio<span class='sr-only'>(current)</span></a>
+                        <a class='nav-link' data-toggle='collapse' data-target='#newList' style=" cursor: cell;">Crear lista</a>
                     </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' data-toggle='collapse' data-target='#newList'>Crear lista</a>
+                    <li class='nav-item active'>
+                        <a class='nav-link' data-toggle='collapse' data-target='#viewLists' style=" cursor: pointer;" onclick="getLists()">Ver listas</a>
                     </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' data-toggle='collapse' data-target='#viewLists' onclick="getLists()">Ver listas</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='#'>Eliminar lista</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='#'>Salir</a>
+                    <li class='nav-item active'>
+                        <a class='nav-link' href='index.html'>Salir</a>
                     </li>
                 </ul>
             </div>
         </nav>
-
-        <div class='row collapse navbar-collapse mt-3' id='newList'>
-
-            <div class='card' style='width: 18rem;'>
-                <div class='card-body'>
-                    <h5 class='card-title'>Nueva Lista</h5>
-                    <label for='new_list'>
-                        Nombre para tu lista
-                    </label>
-                    <input type='text' name='new_list' id='new_list'>
-                    <a onclick='setNewList()' class='btn btn-primary'>Crear lista</a>
+        <div class="row ">
+            <div class='collapse navbar-collapse mt-6' id='newList'>
+                <div class='card col mt-3' style='width: 18rem; ' id="list_creator">
+                    <div class='card-body '>
+                        <h5 class='card-title'>Nueva Lista</h5>
+                        <input type='text' name='new_list' id='new_list'>
+                        <a onclick='setNewList()' class='btn btn-primary mt-3'>Crear lista</a>
+                    </div>
                 </div>
             </div>
-
         </div>
-
-        <div class='row collapse navbar-collapse mt-3' id='viewLists'>
-
-            <div class='card' style='width: 18rem;'>
+        <div class='row float-left mt-3 col-3' id='viewLists'>
+            <div class='card ' style='width: 18rem;'>
                 <div class='card-body'>
                     <h5 class='card-title'>Listas</h5>
-
+                    <ul class="card-text list-group" id="list_card_body"></ul>
                 </div>
             </div>
-
         </div>
-
-
-
-
+        <div id="taskpanel">
+        </div>
         <script>
-            var token = localStorage.getItem('token');
-
-
-            function setNewList() {
-                var namelist = $('#new_list').val();
-                console.log(namelist);
-
-                var token = localStorage.getItem('token');
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'https://apitrello.herokuapp.com/list',
-                    data: {
-                        'name': namelist
-                    },
-                    headers: {
-                        AUTHORIZATION: 'Bearer ' + token
-                    },
-                    success: function(result) {
-                        console.log(result);
-                    },
-                    error: function(xhr, status, thrown) {
-                        console.log(xhr.statusText);
-                        console.log(xhr);
-                    }
-                });
-            }
-
-            function getLists() {
-                //La direccion de la api, esta mal, es list no lists
-
-                $.ajax({
-                    type: 'GET',
-                    url: 'https://apitrello.herokuapp.com/list',
-                    data: {},
-                    headers: {
-                        AUTHORIZATION: 'Bearer ' + token
-                    },
-                    success: function(result) {
-
-                        printLixt(result);
-
-                    },
-                    error: function(xhr, status, thrown) {
-                        console.log(xhr.statusText);
-                        console.log(xhr);
-                    }
-                });
-            }
-            //tengo que pintar las listas en el html
-            function printList(list) {
-
-                list.forEach(element => {
-
-                });
-
-            }
+            $(document).ready(function() {
+                getLists();
+            });
         </script>
+        <script src="js/main.js"></script>
+    </div>
 </body>
 
 </html>

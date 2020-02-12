@@ -7,21 +7,21 @@
 body {
     background: #173f5f;
     text-align: center;
-    font-family: "Lucida Console", Monaco, monospace;
+    font-family: "Lucida Console", "Monaco", "monospace";
     height: auto;
     width: auto;
 }
 
-#global {}
-
 .login_box {
     border-radius: 15px;
     display: flex;
-    margin-top: 20px;
+    margin-top: 5px;
     width: 30%;
     height: 100%;
     background: #f6d55c;
     padding: 10px;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.562), 0 600px 20px 0 rgba(0, 0, 0, 0.519);
+    text-align: center;
 }
 
 .login_box label {
@@ -35,10 +35,10 @@ body {
 }
 
 .login_box input {
-    height: 20px;
+    height: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: #dfe;
     border-radius: 5px;
     border: 1px solid #39c;
@@ -51,17 +51,42 @@ h2 {
     margin-bottom: 10px;
 }
 
-.leter {}
+.leter {
+    display: flex;
+    margin-top: 20px;
+    width: 30%;
+    height: 100%;
+    background-color: #f6d55c;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.562), 0 600px 20px 0 rgba(0, 0, 0, 0.519);
+    border-radius: 15px;
+}
+
+.leter h1 {
+    color: black;
+    margin-top: 10px;
+    ;
+}
 
 .img_logo {
     display: inline-flex;
-    width: 9%;
+    width: 20%;
     margin-top: 30px;
-    margin-left: 35px;
+    margin-left: 0px;
 }
 
 #dash {
-    background-color: white;
     width: 90%;
     height: 100%;
+}
+
+.mini {
+    width: 1px;
+    height: 1px;
+    ;
+}
+
+.navbar li {
+    text-align: center;
+    margin-left: 60px !important;
+    margin-right: 60px !important;
 }
